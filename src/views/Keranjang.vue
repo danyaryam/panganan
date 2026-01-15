@@ -2,7 +2,6 @@
     <div class="keranjang">
         <AppNavbar :updateKeranjang="keranjangs" />
         <div class="container">
-            <!-- breadcrumb -->
             <div class="row mt-4">
                 <div class="col">
                     <nav aria-label="breadcrumb">
@@ -42,24 +41,18 @@
                             <tbody>
                                 <tr v-for="(keranjang, index) in keranjangs" :key="keranjang.id">
                                     <th>{{ index + 1 }}</th>
-
                                     <td>
                                         <img :src="`/images/${keranjang.gambar}`" class="img-fluid shadow"
                                             width="120" />
                                     </td>
-
                                     <td>
                                         <strong>{{ keranjang.nama }}</strong>
                                     </td>
-
                                     <td>{{ keranjang.keterangan || "-" }}</td>
-
                                     <td>{{ keranjang.jumlah_pemesanan }}</td>
-
                                     <td align="right">
                                         Rp {{ formatHarga(keranjang.harga) }}
                                     </td>
-
                                     <td align="right">
                                         <strong>
                                             Rp {{ formatHarga(keranjang.harga * keranjang.jumlah_pemesanan) }}
@@ -89,7 +82,6 @@
                 </div>
             </div>
 
-            <!-- Form Checkout -->
             <div class="row justify-content-end">
                 <div class="col-md-4">
                     <form class="mt-4" v-on:submit.prevent>
@@ -101,7 +93,6 @@
                             <label for="noMeja">Nomor Meja :</label>
                             <input type="text" class="form-control" v-model="pesan.noMeja" />
                         </div>
-
                         <button type="submit" class="btn btn-success float-right" @click="checkout">
                             <b-icon-cart></b-icon-cart>Pesan
                         </button>
@@ -141,8 +132,6 @@ export default {
                         duration: 3000,
                         dismissible: true,
                     });
-
-                    // Update Data keranjang
                     axios
                         .get("http://localhost:3000/keranjangs")
                         .then((response) => this.setKeranjangs(response.data))
@@ -181,11 +170,6 @@ export default {
             .catch((error) => console.log(error));
     },
     computed: {
-        // totalHarga() {
-        //     return this.keranjangs.reduce(function (items, data) {
-        //         return items + data.products.harga * data.jumlah_pemesanan;
-        //     }, 0);
-        // },
         totalHarga() {
             return this.keranjangs.reduce((total, item) => {
                 return total + item.harga * item.jumlah_pemesanan

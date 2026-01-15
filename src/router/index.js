@@ -5,6 +5,7 @@ import Keranjang from '@/views/Keranjang.vue'
 import FoodsDetail from '@/views/FoodsDetail.vue'
 import PesananSukses from '@/views/PesananSukses.vue'
 import AdminPesanan from '@/views/AdminPesanan.vue'
+import AdminProduct from '@/views/AdminProduct.vue'
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
     path: '/admin-pesanan',
     name: 'AdminPesanan',
     component: AdminPesanan
+  },
+  {
+    path: '/admin-product',
+    name: 'AdminProduct',
+    component: AdminProduct
   },
   {
     path: '/about',
